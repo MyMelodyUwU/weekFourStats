@@ -12,7 +12,7 @@ library("usethis")
 library("roxygen2")
 library("testthat")
 
-blood.dat = read.table("blood.txt", header=TRUE)
+blood.dat = read.table("bloodTwo.txt", header=TRUE)
 
 summary(blood.dat)
 
@@ -21,8 +21,9 @@ attach(blood.dat)
 #give first 10
 
 # t.test(blood.dat, data = blood.dat)
-t.test(blood.dat$selen, mu = 29.1, conf.level = 0.95, alternative = "greater")
-pValue <- t.test(blood.dat$selen, mu = 29.1, conf.level = 0.95, alternative = "greater")$p.value
+t.test(blood.dat$test, mu = 19.47, conf.level = 0.95, alternative = "less")
+t.test(blood.dat$test, mu = 19.47, conf.level = 0.95, alternative = "less")$statistic
+pValue <- t.test(blood.dat$test, mu = 19.47, conf.level = 0.95, alternative = "less")$p.value
 pValue
 
 if(pValue < 0.05) {
@@ -39,17 +40,17 @@ if(pValue < 0.025) {
 
 # --------------------------------------------------
 
-u = 29.1
+u = 19.47
 
-qt(p=.05/2, df=28, lower.tail=FALSE)
+qt(p=.05/2, df=21, lower.tail=FALSE)
 
 
-CI <- t.test(blood.dat$selen, mu = u, conf.level = 0.95)$conf.int
+CI <- t.test(blood.dat$test, mu = u, conf.level = 0.95)$conf.int
 CI
 
-qt(p=.25/2, df=28, lower.tail=FALSE)
+qt(p=.19/2, df=21, lower.tail=FALSE)
 
-SevenCI <- t.test(blood.dat$selen, mu = u, conf.level = 0.75)$conf.int
+SevenCI <- t.test(blood.dat$test, mu = u, conf.level = 0.81)$conf.int
 SevenCI
 
 
