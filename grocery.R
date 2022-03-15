@@ -12,19 +12,19 @@ library("usethis")
 library("roxygen2")
 library("testthat")
 
-grocery.dat = read.table("groceryKathy.txt", header=TRUE)
+grocery.dat = read.table("groceryJin.txt", header=TRUE)
 
 summary(grocery.dat)
 
 head(grocery.dat)
 attach(grocery.dat)
 
-t.test(grocery.dat$Thursday, grocery.dat$Friday, paired = TRUE)
+t.test(grocery.dat$Monday, grocery.dat$Tuesday, paired = TRUE)
 
 
-testStat <- t.test(grocery.dat$Thursday, grocery.dat$Friday, paired = TRUE)$statistic
+testStat <- t.test(grocery.dat$Monday, grocery.dat$Tuesday, paired = TRUE)$statistic
 testStat
-pValue <- t.test(grocery.dat$Thursday, grocery.dat$Friday, paired = TRUE)$p.value
+pValue <- t.test(grocery.dat$Monday, grocery.dat$Tuesday, paired = TRUE)$p.value
 pValue
 
 t.test(grocery.dat$Thursday, grocery.dat$Friday, paired = TRUE)
@@ -36,14 +36,14 @@ if(pValue < 0.05) {
   print("Do Not Reject")
 }
 
-if(pValue < 0.005) {
+if(pValue < 0.01) {
   print("Reject")
 } else {
   print("Do Not Reject")
 }
 
-NineFiveCI <- t.test(grocery.dat$Thursday, grocery.dat$Friday, conf.level = 0.95, paired = TRUE)$conf.int
+NineFiveCI <- t.test(grocery.dat$Monday, grocery.dat$Tuesday, conf.level = 0.95, paired = TRUE)$conf.int
 NineFiveCI
 
-EigthtOne <- t.test(grocery.dat$Thursday, grocery.dat$Friday, conf.level = 0.76, paired = TRUE)$conf.int
+EigthtOne <- t.test(grocery.dat$Monday, grocery.dat$Tuesday, conf.level = 0.77, paired = TRUE)$conf.int
 EigthtOne
